@@ -4,25 +4,27 @@ import numpy as np
 import threading
 import tensorflow as tf
 
+# Initialize label and time step settings
 label = "Warmup...."
-n_time_steps = 30
+n_time_steps = 50
 lm_list = []
 
+# Initialize MediaPipe Pose model
 mpPose = mp.solutions.pose
 pose = mpPose.Pose()
 mpDraw = mp.solutions.drawing_utils
 
-model = tf.keras.models.load_model("model.h5")
+# Load the trained multi-class LSTM model
+model = tf.keras.models.load_model("exercise_lstm_model.h5")
 
-# Map each class index to an exercise label
-exercise_labels = [
-    "Exercise 1", "Exercise 2", "Exercise 3", "Exercise 4", "Exercise 5",
-    "Exercise 6", "Exercise 7", "Exercise 8", "Exercise 9", "Exercise 10",
-    "Exercise 11", "Exercise 12"
-]
+# Define labels for multiple exercises (6 exercises in this case)
+exercise_labels = ["1", "2", "3", "4", "5", "6"]
 
+# Start video capture
 cap = cv2.VideoCapture(0)
 
+
+# Function to create landmarks for each frame (to be used as input for the LSTM model)
 def make_landmark_timestep(results):
     c_lm = []
     for id, lm in enumerate(results.pose_landmarks.landmark):
@@ -33,6 +35,7 @@ def make_landmark_timestep(results):
     return c_lm
 
 
+# Function to draw pose landmarks on the image
 def draw_landmark_on_image(mpDraw, results, img):
     mpDraw.draw_landmarks(img, results.pose_landmarks, mpPose.POSE_CONNECTIONS)
     for id, lm in enumerate(results.pose_landmarks.landmark):
@@ -42,6 +45,7 @@ def draw_landmark_on_image(mpDraw, results, img):
     return img
 
 
+# Function to draw predicted class on the image
 def draw_class_on_image(label, img):
     font = cv2.FONT_HERSHEY_SIMPLEX
     bottomLeftCornerOfText = (10, 30)
@@ -59,50 +63,63 @@ def draw_class_on_image(label, img):
     return img
 
 
+# Modified detect function for multi-class classification
 def detect(model, lm_list):
     global label
     lm_list = np.array(lm_list)
     lm_list = np.expand_dims(lm_list, axis=0)
     print(lm_list.shape)
+
+    # Predict the exercise
     results = model.predict(lm_list)
     print(results)
 
-    # Get the predicted class index (0 to 10)
+    # Get the class with the highest probability using argmax
     predicted_class = np.argmax(results)
 
-    # Map the predicted class index to the corresponding exercise label
+    # Update label based on the predicted class
     label = exercise_labels[predicted_class]
     return label
 
 
+# Initialize variables for detection
 i = 0
 warmup_frames = 60
 
+# Start real-time video feed and pose detection
 while True:
-
     success, img = cap.read()
     imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
     results = pose.process(imgRGB)
-    i = i + 1
+    i += 1
+
     if i > warmup_frames:
         print("Start detect....")
 
         if results.pose_landmarks:
             c_lm = make_landmark_timestep(results)
-
             lm_list.append(c_lm)
+
+            # Check if we have collected enough frames (n_time_steps) to make a prediction
             if len(lm_list) == n_time_steps:
-                # predict
+                # Perform prediction in a separate thread
                 t1 = threading.Thread(target=detect, args=(model, lm_list,))
                 t1.start()
-                lm_list = []
+                lm_list = []  # Reset landmark list for next sequence
 
+            # Draw pose landmarks on the image
             img = draw_landmark_on_image(mpDraw, results, img)
 
+    # Draw the predicted class label on the image
     img = draw_class_on_image(label, img)
+
+    # Show the result in a window
     cv2.imshow("Image", img)
+
+    # Exit if the user presses 'q'
     if cv2.waitKey(1) == ord('q'):
         break
 
+# Release the video capture and close windows
 cap.release()
 cv2.destroyAllWindows()
