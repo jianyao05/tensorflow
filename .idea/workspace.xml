@@ -4,17 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2f53599-132c-4bb6-9f0c-761cb0cdbb19" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Tensor.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/inference_model.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train_model.py" afterDir="false" />
+    <list default="true" id="b2f53599-132c-4bb6-9f0c-761cb0cdbb19" name="Changes" comment="THURSDAY">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +22,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "jianyao05"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/jianyao05/tensorflow.git",
+    "accountId": "4a9b4396-2fab-4384-9aa9-543d56be477a"
+  }
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -45,14 +48,30 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Python.data_making.executor": "Run",
+    "Python.dumjy.executor": "Run",
+    "Python.infer.executor": "Run",
     "Python.inference_model.executor": "Run",
     "Python.main.executor": "Run",
     "Python.train_model.executor": "Run",
+    "Python.training_wk4.executor": "Run",
+    "Python.trainingwk4v2.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/223162D/PycharmProjects/Tensor/exercise_data",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
 }]]></component>
-  <component name="RunManager" selected="Python.inference_model">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\223162D\PycharmProjects\Tensor\exercise_data" />
+      <recent name="C:\Users\223162D\PycharmProjects\Tensor" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\223162D\PycharmProjects\Tensor" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="inference_model" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Tensor" />
       <option name="ENV_FILES" value="" />
@@ -142,6 +161,28 @@
       <option name="presentableId" value="Default" />
       <updated>1727060979277</updated>
     </task>
+    <task id="LOCAL-00001" summary="monday">
+      <option name="closed" value="true" />
+      <created>1727085583524</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1727085583524</updated>
+    </task>
+    <task id="LOCAL-00002" summary="THURSDAY">
+      <option name="closed" value="true" />
+      <created>1727345448806</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727345448806</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="monday" />
+    <MESSAGE value="THURSDAY" />
+    <option name="LAST_COMMIT_MESSAGE" value="THURSDAY" />
   </component>
 </project>
